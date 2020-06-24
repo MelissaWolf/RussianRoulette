@@ -7,8 +7,8 @@ How to Play:
 
 Load the gun with a single bullet.
 Spin the chambers so that the bullets location is unkown between the 6 chambers.
-You will have to find the bullet hidden in an unknown chamber you do this by shooting the bullet away or shooting at yourself,
-risking your life in the progress.
+You will have to find the bullet hidden in an unknown chamber.
+You do this by shooting the bullet away or shooting at yourself, risking your life in the progress.
 You will only have TWO chances to shoot away to find the bullet and shoot it safely away.
 If you run out of chances to shoot away you lose the game.
 
