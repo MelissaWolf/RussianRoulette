@@ -19,6 +19,8 @@ namespace RussianRoulette
         public string LoadBull()
         { //Play 0 Load Bull
             shotResult = "The Bullet is Loaded. Spin the Chambers...";
+            gunChmbers[0] = 1;
+
             loading.Play();
 
             return shotResult;
@@ -32,7 +34,12 @@ namespace RussianRoulette
             Random luck = new Random();
             bulletNum = luck.Next(0, 6);
 
-            gunChmbers[bulletNum] = 1; //Bullet placed randomly in gun
+            if (bulletNum != 0) //Bullet has moved
+            {
+                gunChmbers[0] = 0;
+                gunChmbers[bulletNum] = 1;
+            }
+
             bulletNum++; //Bullet's Chamber
 
             return shotResult;
@@ -43,20 +50,20 @@ namespace RussianRoulette
             ptsChange = 0;
             thisChmber = thisChmber - 1; //Subtrated 1 for gunChmber Arry
 
-                if (gunChmbers[thisChmber] == 1)
-                { //Bullet is in chamber
-                    shotResult = "You Lose!";
-                    ptsChange = -15;
+            if (gunChmbers[thisChmber] == 1)
+            { //Bullet is in chamber
+                shotResult = "You Lose!";
+                ptsChange = -15;
 
-                    shot.Play();
-                }
-                else
-                {
-                    //Bullet is not chamber
-                    shotResult = "Lucky Guess... Shoot Again.";
+                shot.Play();
+            }
+            else
+            {
+                //Bullet is not chamber
+                shotResult = "Lucky Guess... Shoot Again.";
 
-                    gunBlank.Play();
-                }
+                gunBlank.Play();
+            }
 
             newChmber = thisChmber; //Subtracted 1 already 4 array
             chanceLeft = freeShots;
@@ -71,25 +78,25 @@ namespace RussianRoulette
             freeShots = freeShots - 1;
 
             if (gunChmbers[thisChmber] == 1)
-                { //If bullet is fired
-                    shotResult = "You win!";
-                    ptsChange = 10;
+            { //If bullet is fired
+                shotResult = "You win!";
+                ptsChange = 10;
 
-                    shot.Play();
-                }
-                else if (freeShots == 0)
-                { //No more free shots
-                    shotResult = "Out of Chances. You Lose!";
-                    ptsChange = -15;
+                shot.Play();
+            }
+            else if (freeShots == 0)
+            { //No more free shots
+                shotResult = "Out of Chances. You Lose!";
+                ptsChange = -15;
 
-                    gunBlank.Play();
-                }
-                else
-                { //You lose a free shot
-                    shotResult = "The Chamber was Empty Try Again";
+                gunBlank.Play();
+            }
+            else
+            { //You lose a free shot
+                shotResult = "The Chamber was Empty Try Again";
 
-                    gunBlank.Play();
-                }
+                gunBlank.Play();
+            }
 
             newChmber = thisChmber; //Subtracted 1 already 4 array
             chanceLeft = freeShots;
